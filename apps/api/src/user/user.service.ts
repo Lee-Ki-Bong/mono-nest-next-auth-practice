@@ -18,7 +18,6 @@ export class UserService {
     const existsUser = await this.userRepository.findOne({
       where: { email: createUserDto.email }
     })
-    console.log(existsUser)
     if (existsUser) {
       throw new ConflictException("User already exists")
     }
