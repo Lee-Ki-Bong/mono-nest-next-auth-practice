@@ -22,6 +22,7 @@ export async function signUp(
   }
 
   // 2. Send the data to the server
+  console.log(`${BACKEND_URL}`)
   const response = await fetch(`${BACKEND_URL}/auth/signup`, {
     method: "POST",
     headers: {
@@ -30,13 +31,13 @@ export async function signUp(
     body: JSON.stringify(validationFields.data)
   })
 
-  if (!response.ok) {
+  if (response.ok) {
     redirect("/auth/signin")
   } else {
     return {
       message:
         response.status === 409
-          ? "Account created successfully."
+          ? "The user is already existed!"
           : response.statusText
     }
   }
