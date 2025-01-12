@@ -1,8 +1,7 @@
-import { Module } from "@nestjs/common"
-import { AppController } from "./app.controller"
-import { AppService } from "./app.service"
+import { Module, ValidationPipe } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { TypeOrmModule } from "@nestjs/typeorm"
+import { APP_PIPE } from "@nestjs/core"
 
 @Module({
   imports: [
@@ -26,7 +25,17 @@ import { TypeOrmModule } from "@nestjs/typeorm"
       inject: [ConfigService]
     })
   ],
-  controllers: [AppController],
-  providers: [AppService]
+  providers: [
+    {
+      provide: APP_PIPE,
+      useFactory: () => {
+        return new ValidationPipe({
+          whitelist: true, // 요청에서 DTO에 정의되지 않은 속성 제거
+          forbidNonWhitelisted: true, // DTO에 정의되지 않은 속성이 있으면 에러 발생
+          transform: true // 요청 데이터를 DTO 클래스의 타입으로 자동 변환
+        })
+      }
+    }
+  ]
 })
 export class AppModule {}
