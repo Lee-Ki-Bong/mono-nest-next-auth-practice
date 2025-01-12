@@ -1,10 +1,11 @@
-import { Injectable } from "@nestjs/common"
+import { ConflictException, Injectable } from "@nestjs/common"
+import { Repository } from "typeorm"
+import { User } from "./entity/user.entity"
+import { CreateUserDto } from "./dto/create-user.dto"
 
 @Injectable()
 export class UserService {
-  constructor() {}
+  constructor(private readonly userRepository: Repository<User>) {}
 
-  async create() {
-    // Logic to create a user
-  }
+  async create(createUserDto: CreateUserDto) {}
 }
