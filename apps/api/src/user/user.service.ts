@@ -1,4 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common"
 
 @Injectable()
-export class UserService {}
+export class UserService {
+  constructor() {}
+
+  async create() {
+    // Logic to create a user
+  }
+}
