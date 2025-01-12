@@ -2,6 +2,8 @@ import { Module, ValidationPipe } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { APP_PIPE } from "@nestjs/core"
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -23,7 +25,9 @@ import { APP_PIPE } from "@nestjs/core"
         charset: "utf8mb4"
       }),
       inject: [ConfigService]
-    })
+    }),
+    AuthModule,
+    UserModule
   ],
   providers: [
     {
