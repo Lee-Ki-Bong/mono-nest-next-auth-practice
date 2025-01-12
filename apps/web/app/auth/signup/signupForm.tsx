@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import SubmitButton from "@/components/ui/submitButton"
 import React from "react"
 
 const SignupForm = () => {
@@ -20,6 +21,7 @@ const SignupForm = () => {
           <Label htmlFor="password">Password</Label>
           <Input id="password" type="password" />
         </div>
+        <SubmitButton>Sign Up</SubmitButton>
       </div>
     </form>
   )
