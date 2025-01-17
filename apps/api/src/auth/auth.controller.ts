@@ -14,4 +14,9 @@ export class AuthController {
   async registerUser(@Body() singupDto: SingupDto) {
     return await this.userService.create(singupDto)
   }
+
+  @Post("signin")
+  async login(@Body() singupDto: SingupDto) {
+    return await this.authService.signin(singupDto)
+  }
 }
